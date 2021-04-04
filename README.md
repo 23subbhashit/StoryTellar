@@ -1,5 +1,11 @@
 # StoryTellar
 
+## To install
+
+```
+pip install storyscience
+```
+
 ## To build package
 
 ```
