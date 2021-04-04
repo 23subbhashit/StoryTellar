@@ -1,0 +1,7 @@
+README.md
+setup.py
+storyscience/__init__.py
+storyscience.egg-info/PKG-INFO
+storyscience.egg-info/SOURCES.txt
+storyscience.egg-info/dependency_links.txt
+storyscience.egg-info/top_level.txt

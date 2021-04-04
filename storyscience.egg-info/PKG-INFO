@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: storyscience
+Version: 0.0.1
+Summary: A storyteller
+Home-page: https://github.com/23subbhashit/StoryTellar/
+Author: subbhashit mukherjee
+Author-email: subbhashitmukherjee@gmail.com
+License: MIT
+Description: # StoryTellar
+        
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
