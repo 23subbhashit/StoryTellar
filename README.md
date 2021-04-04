@@ -3,7 +3,7 @@
 ## To build package
 
 ```
-python3 setup.py sdist bdist_wheel
+python setup.py sdist bdist_wheel
 ```
 
 ## To upload to PYPI
