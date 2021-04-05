@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="storyscience",
-    version="0.0.3",
+    version="0.0.8",
     author="subbhashit mukherjee",
     author_email="subbhashitmukherjee@gmail.com",
     packages=["storyscience"],
@@ -16,6 +16,7 @@ setuptools.setup(
     license='MIT',
     python_requires='>=3.6',
     install_requires=[
-    
+        'numpy>=1.16.6',
+        'pandas>=1.0.5'
     ]
 )
