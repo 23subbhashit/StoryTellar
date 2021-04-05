@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="storyscience",
-    version="0.0.9",
+    version="1.0.0",
     author="subbhashit mukherjee",
     author_email="subbhashitmukherjee@gmail.com",
     packages=["storyscience"],

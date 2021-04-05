@@ -4,13 +4,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def subbhashit():
+def Subbhashit():
     return ('Hi Vro')
 
-def shree():
+def Shree():
     return ("HI SHREE")
 
-def shivang():
+def Shivang():
     return "HI GUJJU"
 
 
@@ -52,7 +52,7 @@ def ZScore(data,threshold=1):
             outliers.append(i)
     return outliers 
 
-def singleplot(arr):
+def SinglePlot(arr):
     fig, ax =plt.subplots(2,2)
     fig.set_size_inches(12.7, 10.27)
     
