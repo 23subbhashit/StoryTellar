@@ -66,5 +66,42 @@ def SinglePlot(arr):
     
     sns.boxplot(arr,ax=ax[1,1])
     
-    
     fig.show()
+
+def IQR(data,arg1=75,arg2=25):
+    q3, q1 = np.percentile(data, [arg1 ,arg2])
+    iqr = q3 - q1
+    return iqr
+
+def Describe(data):
+    l = list(data.columns)
+    length = []
+    mini = []
+    maxi =[]
+    mean = []
+    median = []
+    mode = []
+    typ =[]
+    std =[]
+    std=[]
+    types = ['float64','int64']
+    for  i in l:
+        typ.append(data[i].dtype)
+        length.append(len(data[i]))
+        mini.append(min(data[i]))
+        maxi.append(max(data[i]))
+        if data[i].dtype in types:
+            mean.append(data[i].mean())
+            median.append(data[i].median())
+            mode.append(data[i].mode()[0])
+            std.append(np.std(data[i]))
+            
+        else:
+            mean.append(np.nan)
+            median.append(np.nan)
+            mode.append(np.nan)
+            std.append(np.nan)
+            
+        
+    df = pd.DataFrame([typ,length,mini,maxi,mean,median,mode,std], index=['Type','Length','Minimum','Maximum','Mean','Median','Mode','STD'] ,columns = l)
+    return df
