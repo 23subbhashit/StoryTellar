@@ -3,6 +3,11 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import warnings
+warnings.filterwarnings("ignore")
+import plotly.graph_objects as go
+from plotly.offline import init_notebook_mode,iplot
+import plotly.express as px
 
 def Subbhashit():
     return ('Hi Vro')
@@ -105,3 +110,18 @@ def Describe(data):
         
     df = pd.DataFrame([typ,length,mini,maxi,mean,median,mode,std], index=['Type','Length','Minimum','Maximum','Mean','Median','Mode','STD'] ,columns = l)
     return df
+
+def Chloropleth(data , title='' , hue =''):
+    countries=data.value_counts()
+    f= go.Figure(data=go.Choropleth(
+        locations=countries.index,
+        z =countries, 
+        locationmode = 'country names', 
+        colorscale =px.colors.sequential.Plasma,
+        colorbar_title = str(hue),
+    ))
+
+    f.update_layout(
+        title_text = str(title),
+    )
+    iplot(f)
