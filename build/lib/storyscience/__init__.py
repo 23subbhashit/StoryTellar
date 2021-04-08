@@ -127,7 +127,7 @@ def Chloropleth(data , title='' , hue =''):
     )
     iplot(f)
 
-def ErrorScore(yt,yp,typ='classification'):
+def ErrorScore(yt,yp,typ='classification',beta=0.5,average='macro'):
     typ = typ.lower()
     r2_score1 = []
     mean_squared_error1 = []
@@ -137,7 +137,7 @@ def ErrorScore(yt,yp,typ='classification'):
     accuracy_score1=[]
     f1_score1=[]
     fbeta_score1=[]
-    if typ=='classification':
+    if typ=='regression':
         a=r2_score(yt,yp)
         b=mean_squared_error(yt,yp)
         c=mean_squared_log_error(yt,yp)
@@ -150,10 +150,10 @@ def ErrorScore(yt,yp,typ='classification'):
         mean_absolute_error1.append(e)
         df = pd.DataFrame([r2_score1,mean_squared_error1,mean_squared_log_error1,median_absolute_error1,mean_absolute_error1], index=['R2-SCORE','MeanSquaredError','MeanSquaredLogError','MedianAbsoluteError','MeanAbsoluteError'] ,columns =['Score'])
         return df
-    elif typ=='regression':
+    elif typ=='classification':
         a=f1_score(yt,yp)
         b=accuracy_score(yt,yp)
-        c=fbeta_score(yt,yp)
+        c=fbeta_score(yt,yp,beta=beta,average=average)
         f1_score1.append(a)
         accuracy_score1.append(b)
         fbeta_score1.append(c)
