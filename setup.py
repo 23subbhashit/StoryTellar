@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="storyscience",
-    version="1.2.13",
+    version="1.2.14",
     author="subbhashit mukherjee",
     author_email="subbhashitmukherjee@gmail.com",
     packages=["storyscience"],
@@ -21,6 +21,7 @@ setuptools.setup(
         'seaborn>=0.10.1',
         'matplotlib>=3.2.2',
         'plotly>=4.9.0',
-        'scikit-learn>=0.23.2'
+        'scikit-learn>=0.23.2',
+        'tabulate>=0.8.9'
     ]
 )
