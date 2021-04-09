@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
+from tabulate import tabulate as tb
 
 warnings.filterwarnings("ignore")
 import plotly.graph_objects as go
