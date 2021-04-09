@@ -35,7 +35,6 @@ def Shivang():
 
 
 def Count(x):
-    dictionary = dict()
     array = list(x)
     countArray = dict(Counter(array))
     return countArray

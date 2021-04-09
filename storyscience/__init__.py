@@ -36,7 +36,6 @@ def Shivang():
 
 
 def Count(x):
-    dictionary = dict()
     array = list(x)
     countArray = dict(Counter(array))
     return countArray
@@ -296,5 +295,3 @@ def suggest_fillers(data, th=40):
             tablefmt="fancy_grid",
         )
     )
-
-
