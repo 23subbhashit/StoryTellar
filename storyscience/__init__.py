@@ -296,3 +296,5 @@ def suggest_fillers(data, th=40):
             tablefmt="fancy_grid",
         )
     )
+
+
