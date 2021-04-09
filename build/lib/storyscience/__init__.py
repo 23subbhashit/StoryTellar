@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
+from tabulate import tabulate as tb
 
 warnings.filterwarnings("ignore")
 import plotly.graph_objects as go
@@ -151,55 +152,132 @@ def Chloropleth(data, title="", hue=""):
     iplot(f)
 
 
-def ErrorScore(yt, yp, typ="classification", beta=0.5, average="macro"):
+def ErrorScore(yt,yp,typ='classification',beta=0.5,average='macro'):
     typ = typ.lower()
     r2_score1 = []
     mean_squared_error1 = []
-    mean_squared_log_error1 = []
-    median_absolute_error1 = []
-    mean_absolute_error1 = []
-    accuracy_score1 = []
-    f1_score1 = []
-    fbeta_score1 = []
-    if typ == "regression":
-        a = r2_score(yt, yp)
-        b = mean_squared_error(yt, yp)
-        c = mean_squared_log_error(yt, yp)
-        d = median_absolute_error(yt, yp)
-        e = mean_absolute_error(yt, yp)
+    mean_squared_log_error1 =[]
+    median_absolute_error1=[]
+    mean_absolute_error1=[]
+    accuracy_score1=[]
+    f1_score1=[]
+    fbeta_score1=[]
+    if typ=='regression':
+        a=r2_score(yt,yp)
+        b=mean_squared_error(yt,yp)
+        c=mean_squared_log_error(yt,yp)
+        d=median_absolute_error(yt,yp)
+        e=mean_absolute_error(yt,yp)
         r2_score1.append(a)
         mean_squared_error1.append(b)
         mean_squared_log_error1.append(c)
         median_absolute_error1.append(d)
         mean_absolute_error1.append(e)
-        df = pd.DataFrame(
-            [
-                r2_score1,
-                mean_squared_error1,
-                mean_squared_log_error1,
-                median_absolute_error1,
-                mean_absolute_error1,
-            ],
-            index=[
-                "R2-SCORE",
-                "MeanSquaredError",
-                "MeanSquaredLogError",
-                "MedianAbsoluteError",
-                "MeanAbsoluteError",
-            ],
-            columns=["Score"],
-        )
+        df = pd.DataFrame([r2_score1,mean_squared_error1,mean_squared_log_error1,median_absolute_error1,mean_absolute_error1], index=['R2-SCORE','MeanSquaredError','MeanSquaredLogError','MedianAbsoluteError','MeanAbsoluteError'] ,columns =['Score'])
         return df
-    elif typ == "classification":
-        a = f1_score(yt, yp)
-        b = accuracy_score(yt, yp)
-        c = fbeta_score(yt, yp, beta=beta, average=average)
+    elif typ=='classification':
+        a=f1_score(yt,yp)
+        b=accuracy_score(yt,yp)
+        c=fbeta_score(yt,yp,beta=beta,average=average)
         f1_score1.append(a)
         accuracy_score1.append(b)
         fbeta_score1.append(c)
-        df = pd.DataFrame(
-            [accuracy_score1, f1_score1, fbeta_score1],
-            index=["AUC", "F1-SCORE", "FBETA-SCORE"],
-            columns=["Score"],
-        )
+        df = pd.DataFrame([
+          accuracy_score1,
+          f1_score1,
+          fbeta_score1
+        ], index=['AUC','F1-SCORE','FBETA-SCORE'] ,columns =['Score'])
         return df
+    else:
+        return "Enter a valid type"
+
+
+def suggest_cats(data, th=40):
+    dtb = []
+    print(
+        "Following columns might be considered to be changed as categorical\nTaking",
+        th,
+        "% as Threshold for uniqueness percentage determination\nLength of the dataset is:",
+        len(data),
+    )
+    ln = len(data)
+
+    for i in data.columns:
+        unique_vals = data[i].nunique()
+        total_percent = (unique_vals / ln) * 100
+        eff_percent = (data[i].dropna().nunique() / ln) * 100
+        avg_percent = (total_percent + eff_percent) / 2
+        if avg_percent <= th:
+            dtb.append(
+                [
+                    i,
+                    round(unique_vals, 5),
+                    round(total_percent, 5),
+                    round(eff_percent, 5),
+                    round(avg_percent, 5),
+                ]
+            )
+
+    print(
+        tb(
+            dtb,
+            headers=[
+                "Column name",
+                "Number of unique values",
+                "Total uniqueness percent",
+                "Effective uniqueness percent",
+                "Average uniqueness percentage",
+            ],
+            tablefmt="fancy_grid",
+        )
+    )
+
+
+def suggest_drops(data, th=60):
+    dtb = []
+    print(
+        "Following columns might be considered to be dropped as percent of missing values are greater than the threshold-",
+        th,
+        "%\nLength of the dataset is:",
+        len(data),
+    )
+    ln = len(data)
+
+    for i in data.columns:
+        nans = data[i].isna().sum()
+        nan_percent = (nans / ln) * 100
+        if nan_percent >= th:
+            dtb.append([i, round(nans, 5), round(nan_percent, 5)])
+
+    print(
+        tb(
+            dtb,
+            headers=["Column name", "Number of nulls", "Percent of null values"],
+            tablefmt="fancy_grid",
+        )
+    )
+
+
+def suggest_fillers(data, th=40):
+    dtb = []
+    print(
+        "Following columns might be considered to be imputed as percent of missing values are less than the threshold-",
+        th,
+        "%\nLength of the dataset is:",
+        len(data),
+    )
+    ln = len(data)
+
+    for i in data.columns:
+        nans = data[i].isna().sum()
+        nan_percent = (nans / ln) * 100
+        if nan_percent <= th and nan_percent != 0:
+            dtb.append([i, round(nans, 5), round(nan_percent, 5)])
+
+    print(
+        tb(
+            dtb,
+            headers=["Column name", "Number of nulls", "Percent of null values"],
+            tablefmt="fancy_grid",
+        )
+    )
