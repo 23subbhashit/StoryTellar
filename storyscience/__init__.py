@@ -281,3 +281,22 @@ def suggest_fillers(data, th=40):
             tablefmt="fancy_grid",
         )
     )
+
+    
+  
+
+#----Shivang----#
+#Finding number or null value in each column
+
+def null_rows_in_each_col(df):
+    counter = 0 
+    for col in df.columns:
+        row_vals = list(df[col])
+        for i in row_vals:
+            if not i:
+                counter += 1
+        
+        print(col + " : " + str(counter))
+        counter = 0
+        
+#----------------------#
