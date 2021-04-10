@@ -23,25 +23,25 @@ from sklearn.metrics import (
 )
 
 
-def Subbhashit():
+def subbhashit():
     return "Hi Vro"
 
 
-def Shree():
+def shree():
     return "HI SHREE"
 
 
-def Shivang():
+def shivang():
     return "HI GUJJU"
 
 
-def Count(x):
+def count(x):
     array = list(x)
     countArray = dict(Counter(array))
     return countArray
 
 
-def Impute(array, method="mean"):
+def impute(array, method="mean"):
     arr = list(array)
     pos = []
     for i in range(len(arr)):
@@ -61,7 +61,7 @@ def Impute(array, method="mean"):
     return arr
 
 
-def ZScore(data, threshold=1):
+def zscore(data, threshold=1):
     threshold = 3
     outliers = []
     arr = list(data)
@@ -74,7 +74,7 @@ def ZScore(data, threshold=1):
     return outliers
 
 
-def SinglePlot(arr):
+def singleplot(arr):
     fig, ax = plt.subplots(2, 2)
     fig.set_size_inches(12.7, 10.27)
 
@@ -91,13 +91,13 @@ def SinglePlot(arr):
     fig.show()
 
 
-def IQR(data, arg1=75, arg2=25):
+def iqr(data, arg1=75, arg2=25):
     q3, q1 = np.percentile(data, [arg1, arg2])
     iqr = q3 - q1
     return iqr
 
 
-def Describe(data):
+def describe(data):
     l = list(data.columns)
     length = []
     mini = []
@@ -134,7 +134,7 @@ def Describe(data):
     return df
 
 
-def Chloropleth(data, title="", hue=""):
+def chloropleth(data, title="", hue=""):
     countries = data.value_counts()
     f = go.Figure(
         data=go.Choropleth(
@@ -152,7 +152,7 @@ def Chloropleth(data, title="", hue=""):
     iplot(f)
 
 
-def ErrorScore(yt,yp,typ='classification',beta=0.5,average='macro'):
+def error_score(yt,yp,typ='classification',beta=0.5,average='macro'):
     typ = typ.lower()
     r2_score1 = []
     mean_squared_error1 = []
