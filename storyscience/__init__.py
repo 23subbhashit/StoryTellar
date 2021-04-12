@@ -299,4 +299,31 @@ def null_rows_in_each_col(df):
         print(col + " : " + str(counter))
         counter = 0
         
-#----------------------#
+
+#function for parsing datetime
+def formatted_date_time(df):
+    for col in df.columns:
+        if col == "date" or col == "Date":
+            df[col] = pd.to_datetime(df[col]).dt.strftime("%Y-%m-%d")
+            print(df[col])
+
+
+# Min, max, sum ,avg
+def min_max_sum_avg(a):
+    for col in a.columns:
+        if a[col].dtypes == 'object' or a[col].dtypes == 'bool' or a[col].dtypes == 'datetime64':
+            pass
+        else:
+            row_list = list(a[col])
+            mini = min(row_list)
+            maxi = max(row_list)
+            summ = sum(row_list)
+            avg =  summ / len(row_list)
+            print(col + " :- ")
+            print("Max : " + str(maxi))
+            print("Min : " + str(mini))
+            print("Sum : " + str(summ))
+            print("Avg : " + str(avg))
+            print()
+
+#----------------------#            
