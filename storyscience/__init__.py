@@ -5,7 +5,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
 from tabulate import tabulate as tb
-
+import nltk
+from nltk.corpus import stopwords
+from sklearn.feature_extraction.text import TfidfVectorizer  
+from nltk.stem.porter import PorterStemmer
+import re
 warnings.filterwarnings("ignore")
 import plotly.graph_objects as go
 from plotly.offline import init_notebook_mode, iplot
@@ -21,6 +25,10 @@ from sklearn.metrics import (
     f1_score,
     fbeta_score,
 )
+import nltk
+from nltk.corpus import stopwords
+from sklearn.feature_extraction.text import TfidfVectorizer  
+from nltk.stem.porter import PorterStemmer
 
 
 def subbhashit():
@@ -33,7 +41,6 @@ def shree():
 
 def shivang():
     return "HI GUJJU"
-
 
 def count(x):
     array = list(x)
@@ -327,3 +334,18 @@ def min_max_sum_avg(a):
             print()
 
 #----------------------#            
+
+
+def process_text(x):
+    processed_tweet = re.sub(r'\W', ' ', str(x))
+    processed_tweet = re.sub(r'\s+[a-zA-Z]\s+', ' ', processed_tweet)
+    processed_tweet = re.sub(r'\^[a-zA-Z]\s+', ' ', processed_tweet) 
+    processed_tweet= re.sub(r'\s+', ' ', processed_tweet, flags=re.I)
+    processed_tweet = re.sub(r'^b\s+', '', processed_tweet)
+    processed_tweet = processed_tweet.lower()
+    return processed_tweet
+
+def tfidf_vectorizer(x,max_featues=1000,min_df=5,max_df=0.7):
+    tfidfconverter = TfidfVectorizer(max_features=max_featues, min_df=min_df, max_df=max_df, stop_words=stopwords.words('english'))  
+    df = tfidfconverter.fit_transform(x).toarray()
+    return df
