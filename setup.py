@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="storyscience",
-    version="1.3.0",
+    version="1.3.1",
     author="subbhashit mukherjee",
     author_email="subbhashitmukherjee@gmail.com",
     packages=["storyscience"],
@@ -23,7 +23,7 @@ setuptools.setup(
         'plotly>=4.9.0',
         'scikit-learn>=0.23.2',
         'tabulate>=0.8.9',
-        're>=2.2.1',
+        'regex>=2.2.1',
         'nltk>=3.4.5'
     ]
 )
