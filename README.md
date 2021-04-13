@@ -13,7 +13,7 @@
 
 ## What is it?
 
-**storyscience** is a Python package that provides lexible, and easy to use functions for various anayltical operations.
+**storyscience** is a Python package that provides flexible, and easy to use functions for various anayltical operations.
 It aims to provide support for bussiness analytics and nlp purposes.Currently , it's in the developing stage and we would 
 like to improve it further and extend its support for various platforms.
 
