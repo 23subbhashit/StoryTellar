@@ -11,6 +11,21 @@
   <a href="https://badge.fury.io/py/storyscience"><img src="https://badge.fury.io/py/storyscience.svg" alt="PyPI version" height="18"></a>
 </p>
 
+## What is it?
+
+**storyscience** is a Python package that provides lexible, and easy to use functions for various anayltical operations.
+It aims to provide support for bussiness analytics and nlp purposes.Currently , it's in the developing stage and we would 
+like to improve it further and extend its support for various platforms.
+
+## Main Features
+Here are just a few of the things that pandas does well:
+
+  - Easy handling of missing data.
+  - Provides summary of data and error scores of models for regression and classification.
+  - Provides suggestive methods for  imputing and deleting rows and columns.
+  - Support for map visuals,using plotly.
+  - Provides statistical methods like zscore and iqr(interquartile range)
+  - Support for categorical and numerical data, using matplotlib and seaborn.
 
 ## Installation
 
