@@ -369,7 +369,7 @@ def get_cosine(vec1, vec2):
         return float(numerator) / denominator
 
 
-def text_to_vector(text):
+def text_to_dict(text):
     WORD = re.compile(r"\w+")
     words = WORD.findall(text)
     return Counter(words)
