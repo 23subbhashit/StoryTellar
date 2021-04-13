@@ -12,7 +12,9 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer  
 from nltk.stem.porter import PorterStemmer
 import re
+
 warnings.filterwarnings("ignore")
+
 import plotly.graph_objects as go
 from plotly.offline import init_notebook_mode, iplot
 import plotly.express as px
