@@ -18,7 +18,7 @@ It aims to provide support for bussiness analytics and nlp purposes.Currently , 
 like to improve it further and extend its support for various platforms.
 
 ## Main Features
-Here are just a few of the things that pandas does well:
+Here are just a few of the things that it can provide:
 
   - Easy handling of missing data.
   - Provides summary of data and error scores of models for regression and classification.
