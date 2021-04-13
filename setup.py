@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="storyscience",
-    version="1.3.1",
+    version="1.3.3",
     author="subbhashit mukherjee",
     author_email="subbhashitmukherjee@gmail.com",
     packages=["storyscience"],
@@ -24,6 +24,7 @@ setuptools.setup(
         'scikit-learn>=0.23.2',
         'tabulate>=0.8.9',
         'regex>=2.2.1',
-        'nltk>=3.4.5'
+        'nltk>=3.4.5',
+        'tqdm>=4.45.0'
     ]
 )

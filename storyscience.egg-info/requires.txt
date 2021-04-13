@@ -7,3 +7,4 @@ scikit-learn>=0.23.2
 tabulate>=0.8.9
 regex>=2.2.1
 nltk>=3.4.5
+tqdm>=4.45.0

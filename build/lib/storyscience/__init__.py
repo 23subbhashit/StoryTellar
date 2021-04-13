@@ -1,4 +1,5 @@
 from collections import Counter
+import math
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -6,6 +7,7 @@ import seaborn as sns
 import warnings
 from tabulate import tabulate as tb
 import nltk
+from tqdm import tqdm
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer  
 from nltk.stem.porter import PorterStemmer
@@ -349,3 +351,36 @@ def tfidf_vectorizer(x,max_featues=1000,min_df=5,max_df=0.7):
     tfidfconverter = TfidfVectorizer(max_features=max_featues, min_df=min_df, max_df=max_df, stop_words=stopwords.words('english'))  
     df = tfidfconverter.fit_transform(x).toarray()
     return df
+
+
+
+
+def get_cosine(vec1, vec2):
+    intersection = set(vec1.keys()) & set(vec2.keys())
+    numerator = sum([vec1[x] * vec2[x] for x in intersection])
+
+    sum1 = sum([vec1[x] ** 2 for x in list(vec1.keys())])
+    sum2 = sum([vec2[x] ** 2 for x in list(vec2.keys())])
+    denominator = math.sqrt(sum1) * math.sqrt(sum2)
+
+    if not denominator:
+        return 0.0
+    else:
+        return float(numerator) / denominator
+
+
+def text_to_vector(text):
+    WORD = re.compile(r"\w+")
+    words = WORD.findall(text)
+    return Counter(words)
+
+
+def similarity_matrix(sentences):
+  "gives a matrix for sentence similarity"
+  similarity_matrix=np.zeros((len(sentences),len(sentences)))
+  for index1 in tqdm(range(len(sentences))):
+    for index2 in range(len(sentences)):
+      if index1==index2:
+        continue
+      similarity_matrix[index1][index2]=get_cosine(sentences[index1],sentences[index2])
+  return similarity_matrix
