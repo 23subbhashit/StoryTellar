@@ -25,7 +25,7 @@ Here are just a few of the things that pandas does well:
   - Provides suggestive methods for  imputing and deleting rows and columns.
   - Support for map visuals,using plotly.
   - Provides statistical methods like zscore and iqr(interquartile range)
-  - Support for categorical and numerical data, using matplotlib and seaborn.
+  - Support for categorical and numerical data plotting, using matplotlib and seaborn.
 
 ## Installation
 
