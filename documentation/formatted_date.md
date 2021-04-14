@@ -6,4 +6,4 @@ formatted_date(dataset):
 
 # Description
 
-sets the date format to YYYY-MM-DD format
+Sets the date format to YYYY-MM-DD format
