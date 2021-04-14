@@ -312,7 +312,7 @@ def null_rows(df):
         
 
 #function for parsing datetime
-def formatted_date_time(df):
+def formatted_date(df):
     for col in df.columns:
         if col == "date" or col == "Date":
             df[col] = pd.to_datetime(df[col]).dt.strftime("%Y-%m-%d")
