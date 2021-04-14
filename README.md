@@ -1,6 +1,6 @@
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/43717493/114157274-19d14080-9941-11eb-84cd-aefa1775f9d6.png" width="230" height="230"><br/><br/>
+    <img src="https://github.com/23subbhashit/StoryTellar/blob/master/Welcome%20to%20Vectr%20(2).svg" width="400" height="400"><br/><br/>
     Simple yet flexible Data Analytics tool for Data Scientists.
 </p>
 <p align="center">
