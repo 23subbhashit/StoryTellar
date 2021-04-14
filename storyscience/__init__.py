@@ -9,9 +9,14 @@ from tabulate import tabulate as tb
 import nltk
 from tqdm import tqdm
 from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import TfidfVectorizer  
+from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer  
 from nltk.stem.porter import PorterStemmer
+from sklearn.metrics.pairwise import cosine_similarity
 import re
+from scipy.cluster.hierarchy import linkage, dendrogram
+from nltk.stem.snowball import SnowballStemmer
+
+from sklearn.cluster import KMeans
 
 warnings.filterwarnings("ignore")
 
@@ -357,7 +362,7 @@ def tfidf_vectorizer(x,max_featues=1000,min_df=5,max_df=0.7):
 
 
 
-def get_cosine(vec1, vec2):
+def get_cosine_dict(vec1, vec2):
     intersection = set(vec1.keys()) & set(vec2.keys())
     numerator = sum([vec1[x] * vec2[x] for x in intersection])
 
@@ -384,5 +389,74 @@ def similarity_matrix(sentences):
     for index2 in range(len(sentences)):
       if index1==index2:
         continue
-      similarity_matrix[index1][index2]=get_cosine(sentences[index1],sentences[index2])
+      similarity_matrix[index1][index2]=get_cosine_dict(sentences[index1],sentences[index2])
   return similarity_matrix
+
+def cosine_distance_vector(v1,v2):
+    sumxx, sumxy, sumyy = 0, 0, 0
+    v1=list(v1)
+    v2=list(v2)
+    for i in range(len(v1)):
+        x = v1[i] 
+        y = v2[i]
+        sumxx += x*x
+        sumyy += y*y
+        sumxy += x*y
+    return sumxy/math.sqrt(sumxx*sumyy)
+
+def suggest_similar(df, unique_id, col):
+
+    stemmer = SnowballStemmer("english")
+
+    def tokenize_and_stem(text):
+
+        tokens = [
+            word
+            for sentence in nltk.sent_tokenize(text)
+            for word in nltk.word_tokenize(sentence)
+        ]
+
+        filtered_tokens = [token for token in tokens if re.search("[a-zA-Z]", token)]
+
+        stems = [stemmer.stem(token) for token in filtered_tokens]
+
+        return stems
+
+    tfidf_vectorizer = TfidfVectorizer(
+        max_df=0.8,
+        max_features=200000,
+        min_df=0.2,
+        stop_words="english",
+        use_idf=True,
+        tokenizer=tokenize_and_stem,
+        ngram_range=(1, 3),
+    )
+
+    tfidf_matrix = tfidf_vectorizer.fit_transform([x for x in df[col]])
+
+    km = KMeans(n_clusters=5)
+
+    km.fit(tfidf_matrix)
+
+    clusters = km.labels_.tolist()
+
+    df["cluster"] = clusters
+
+    similarity_distance = 1 - cosine_similarity(tfidf_matrix)
+
+    mergings = linkage(similarity_distance, method="complete")
+
+    dendrogram_ = dendrogram(
+        mergings,
+        labels=[x for x in df[unique_id]],
+        leaf_rotation=90,
+        leaf_font_size=16,
+    )
+
+    fig = plt.gcf()
+
+    _ = [lbl.set_color("r") for lbl in plt.gca().get_xmajorticklabels()]
+
+    fig.set_size_inches(108, 21)
+
+    plt.show()
