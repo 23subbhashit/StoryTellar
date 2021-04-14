@@ -1,9 +1,9 @@
 
 <p align="center">
-    <img src="https://github.com/23subbhashit/StoryTellar/blob/master/Welcome%20to%20Vectr%20(2).svg" width="400" height="400"><br/><br/>
+    <img src="https://github.com/23subbhashit/StoryTellar/blob/master/Welcome%20to%20Vectr%20(2).svg" width="400" height="400">
     Simple yet flexible Data Analytics tool for Data Scientists.
 </p>
-<p align="center">
+<p align="center"">
   <a href="https://github.com/23subbhashit/StoryTellar/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/23subbhashit/StoryTellar"></a>
   <a href="https://github.com/23subbhashit/StoryTellar/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/23subbhashit/StoryTellar"></a>
   <a href="https://github.com/23subbhashit/StoryTellar/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/23subbhashit/StoryTellar"></a>
