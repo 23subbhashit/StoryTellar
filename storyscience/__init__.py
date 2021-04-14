@@ -299,7 +299,7 @@ def suggest_fillers(data, th=40):
 #----Shivang----#
 #Finding number or null value in each column
 
-def null_rows_in_each_col(df):
+def null_rows(df):
     counter = 0 
     for col in df.columns:
         row_vals = list(df[col])
