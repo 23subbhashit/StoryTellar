@@ -1,6 +1,6 @@
 
 ```python3
-chloropleth(dataset, title, hue)
+chloropleth(data, title, hue)
 ```
 
 # Description
