@@ -2,7 +2,7 @@
 # ErrorScore
 
 ```python3
-def error_score(yt,yp,typ='classification',beta=0.5,average='macro'):
+storyscience.error_score(yt,yp,typ='classification',beta=0.5,average='macro'):
 ```
 Gives error scores for various actual and predicted values , applicable only for regression and classification purposes.
 
