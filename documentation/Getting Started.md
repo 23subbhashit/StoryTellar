@@ -4,7 +4,7 @@ StoryScience is an analytical tool built for nlp and bussiness analytics support
 
 ## Suggestive methods :
 
-- <a href="https://github.com/23subbhashit/StoryTellar/blob/master/documentation/suggest_cats.md" >Suggest Categegories</a>
+- <a href="https://github.com/23subbhashit/StoryTellar/blob/master/documentation/suggest_cats.md" >Suggest Categories</a>
 - <a href="https://github.com/23subbhashit/StoryTellar/blob/master/documentation/suggest_drops.md" > Suggest Drops</a>
 - <a href="https://github.com/23subbhashit/StoryTellar/blob/master/documentation/suggest_fillers.md" >Suggest Fillers</a>
 - <a href="https://github.com/23subbhashit/StoryTellar/blob/master/documentation/suggest_similar.md" >Suggest Similar</a>
