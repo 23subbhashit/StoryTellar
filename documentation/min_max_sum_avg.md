@@ -9,7 +9,7 @@ Except for column types such as datetime, char, string
 
 **Arguments**
 
-- **data** : A pandas dataframe
+- **dataset** : A pandas dataframe
 
 //to be changed from here
 
