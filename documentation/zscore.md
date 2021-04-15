@@ -1,5 +1,5 @@
 
-# Describe
+# ZScore
 
 ```python3
 storyscience.zscore(data,threshold=1)
