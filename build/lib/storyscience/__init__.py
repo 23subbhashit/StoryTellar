@@ -460,3 +460,56 @@ def suggest_similar(df, unique_id, col):
     fig.set_size_inches(108, 21)
 
     plt.show()
+
+def catvscatplot(arr1,arr2,stacked=True):
+    b=pd.crosstab(arr1,arr2)
+    b.tail(10).plot.bar(stacked=stacked,figsize=(15,9))
+
+def catvsnumericalplot(data,catcol,numcol,stacked=True,swarmcolor='c',violincolor='r',kdecolor='y',scattercolor='b',linecolor='g'):
+    #Plots initialization
+    fig, ax =plt.subplots(2,2)
+    fig.set_size_inches(12.7, 10.27)
+    
+    #Scatterplot
+    plt.subplot(2,2,1)
+    sns.scatterplot(x=catcol,y=numcol,data=data,color=scattercolor)
+    
+    
+    #Swarm+Violin plot
+    plt.subplot(2,2,2)
+    sns.swarmplot(x=catcol,y=numcol,data=data,color=swarmcolor)
+    sns.violinplot(x=catcol,y=numcol,data=data,color=violincolor)
+    
+    
+    #Bar plot
+    plt.subplot(2,2,3)
+    
+    sns.barplot(x=catcol,y=numcol,data=data)
+    
+    #Box plot
+    plt.subplot(2,2,4)
+    sns.boxplot(x=catcol,y=numcol,data=data)
+    
+    
+#     t=data.pivot_table(index=catcol,values=numcol,aggfunc=np.median)
+#     t.plot(kind="bar",color=['c','y','r'])
+    
+    fig.show()
+
+
+def numvsnumplot(arr1,arr2,stacked=True,scattercolor='c',linecolor='r'):
+    #Plots initialization
+    fig, ax =plt.subplots(1,2)
+    fig.set_size_inches(12.7, 5.27)
+    
+    #Scatterplot
+    plt.subplot(1,2,1)
+    sns.scatterplot(arr1,arr2,color=scattercolor)
+    
+    
+    #Lineplot
+    plt.subplot(1,2,2)
+    sns.lineplot(arr1,arr2,color=linecolor)
+    
+    
+    fig.show()
