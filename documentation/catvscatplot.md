@@ -4,7 +4,7 @@
 ```python3
 storyscience.catvscatplot(arr1,arr2,stacked=True)
 ```
-Utility for plotting categorical vs categorical using crosstabs.
+Utility for plotting categorical vs categorical data using crosstabs.
 
 **Arguments**
 
