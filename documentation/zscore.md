@@ -9,7 +9,7 @@ Computes ZScore and gives as output a list of outliers in the array
 **Arguments**
 
 - **data** : An Array containg numerics values.
-- **threshold** : A float or int, denoting threshold value above which the number will be identified as an outlier.
+- **threshold** : A float or int, denoting threshold value above which the number will be identified as an outlier.default=1
 
 **Example**
 
