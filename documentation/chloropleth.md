@@ -18,8 +18,8 @@ data=pd.read_csv("/kaggle/input/fifa-19-player-dataset/FIFA19.csv")
 ss.chloropleth(data.Nationality,'Number of players from each country',"NO. of players")
 ```
 **Dataset**
-<br/>
-![Fifa-19](https://www.kaggle.com/chaitanyahivlekar/fifa-19-player-dataset)
+
+<a href="https://www.kaggle.com/chaitanyahivlekar/fifa-19-player-dataset" target="_blank"></a>
 
 
 
