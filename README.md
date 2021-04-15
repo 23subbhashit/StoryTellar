@@ -27,6 +27,9 @@ Here are just a few of the things that it can provide:
   - Provides statistical methods like zscore and iqr(interquartile range)
   - Support for categorical and numerical data plotting, using matplotlib and seaborn.
 
+## Documentation
+The  documentation for this can be found here : [Getting Started](https://pandas.pydata.org/pandas-docs/stable/install.html#installing-from-source).
+
 ## Installation
 
 ```
