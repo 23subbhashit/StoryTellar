@@ -8,7 +8,7 @@ Suggests which columns should be droped in a dataframe using a threshold value.
 
 **Arguments**
 
-- **data** : An Array , containing categorical/numerical values 
+- **data** : The whole dataset only
 - **th** :  An Int , denoting threshold which is used for comparision.default=60.
 
 **Example**
