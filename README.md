@@ -14,8 +14,7 @@
 ## What is it?
 
 **storyscience** is a Python package that provides flexible, and easy to use functions for various analytical operations.
-It aims to provide support for business analytics and NLP purposes.Currently , it's in the developing stage and we would 
-like to improve it further and extend its support for various platforms.
+It aims to provide support for business analytics and NLP purposes. It has the broader goal of becoming one of the most powerful and flexible open source data analysis / manipulation tool available in python language.
 
 ## Main Features
 Here are just a few of the things that it can provide:
