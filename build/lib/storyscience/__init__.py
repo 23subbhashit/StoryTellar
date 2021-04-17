@@ -298,24 +298,6 @@ def suggest_fillers(data, th=40):
         )
     )
 
-    
-  
-
-#----Shivang----#
-#Finding number or null value in each column
-
-def null_rows(df):
-    counter = 0 
-    for col in df.columns:
-        row_vals = list(df[col])
-        for i in row_vals:
-            if not i:
-                counter += 1
-        
-        print(col + " : " + str(counter))
-        counter = 0
-        
-
 #function for parsing datetime
 def formatted_date(df):
     for col in df.columns:
@@ -323,28 +305,7 @@ def formatted_date(df):
             df[col] = pd.to_datetime(df[col]).dt.strftime("%Y-%m-%d")
             print(df[col])
 
-
-# Min, max, sum ,avg
-def min_max_sum_avg(a):
-    for col in a.columns:
-        if a[col].dtypes == 'object' or a[col].dtypes == 'bool' or a[col].dtypes == 'datetime64':
-            pass
-        else:
-            row_list = list(a[col])
-            mini = min(row_list)
-            maxi = max(row_list)
-            summ = sum(row_list)
-            avg =  summ / len(row_list)
-            print(col + " :- ")
-            print("Max : " + str(maxi))
-            print("Min : " + str(mini))
-            print("Sum : " + str(summ))
-            print("Avg : " + str(avg))
-            print()
-
-#----------------------#            
-
-
+# Function for cleaning of texts
 def process_text(x):
     processed_tweet = re.sub(r'\W', ' ', str(x))
     processed_tweet = re.sub(r'\s+[a-zA-Z]\s+', ' ', processed_tweet)
