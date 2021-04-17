@@ -1,4 +1,4 @@
-# CatvsCatPlot
+# Numerical vs Numerical Plot
 
 ```python3
 storyscience.numvsnumplot(arr1,arr2,stacked=True,scattercolor='c',linecolor='r')

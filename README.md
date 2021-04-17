@@ -1,6 +1,6 @@
 
 <p align="center">
-    <img src="https://github.com/23subbhashit/StoryTellar/blob/master/Welcome%20to%20Vectr%20(2).svg" width="400" height="400"><br/>
+    <img src="https://raw.githubusercontent.com/23subbhashit/StoryTellar/8c802a003d15cd02cbc6fc6a13c187a7600dfd1b/Welcome%20to%20Vectr%20(2).svg" width="400" height="400"><br/>
     Simple yet flexible Data Analytics tool for Data Scientists.
 </p>
 <p align="center"">
@@ -13,9 +13,8 @@
 
 ## What is it?
 
-**storyscience** is a Python package that provides flexible, and easy to use functions for various anayltical operations.
-It aims to provide support for bussiness analytics and nlp purposes.Currently , it's in the developing stage and we would 
-like to improve it further and extend its support for various platforms.
+**storyscience** is a Python package that provides flexible, and easy to use functions for various analytical operations.
+It aims to provide support for business analytics and NLP purposes. It has the broader goal of becoming one of the most powerful and flexible open source data analysis / manipulation tool available in python language.
 
 ## Main Features
 Here are just a few of the things that it can provide:
@@ -32,6 +31,11 @@ Here are just a few of the things that it can provide:
 ```
 pip install storyscience
 ```
+
+## Documentation
+The  documentation for this can be found here : [Getting Started](https://github.com/23subbhashit/StoryTellar/blob/master/documentation/Getting%20Started.md).
+
+
 
 ## Build
 

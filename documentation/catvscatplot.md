@@ -1,5 +1,5 @@
 
-# CatvsCatPlot
+# Categorical vs Categorical Plot
 
 ```python3
 storyscience.catvscatplot(arr1,arr2,stacked=True)
