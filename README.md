@@ -26,14 +26,16 @@ Here are just a few of the things that it can provide:
   - Provides statistical methods like zscore and iqr(interquartile range)
   - Support for categorical and numerical data plotting, using matplotlib and seaborn.
 
-## Documentation
-The  documentation for this can be found here : [Getting Started](https://github.com/23subbhashit/StoryTellar/blob/master/documentation/Getting%20Started.md).
-
 ## Installation
 
 ```
 pip install storyscience
 ```
+
+## Documentation
+The  documentation for this can be found here : [Getting Started](https://github.com/23subbhashit/StoryTellar/blob/master/documentation/Getting%20Started.md).
+
+
 
 ## Build
 
