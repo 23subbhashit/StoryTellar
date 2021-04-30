@@ -9,13 +9,13 @@ from tabulate import tabulate as tb
 import nltk
 from tqdm import tqdm
 from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer  
+from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer
 from nltk.stem.porter import PorterStemmer
 from sklearn.metrics.pairwise import cosine_similarity
 import re
 from scipy.cluster.hierarchy import linkage, dendrogram
 from nltk.stem.snowball import SnowballStemmer
-
+from datetime import date
 from sklearn.cluster import KMeans
 
 warnings.filterwarnings("ignore")
@@ -36,7 +36,7 @@ from sklearn.metrics import (
 )
 import nltk
 from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import TfidfVectorizer  
+from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.stem.porter import PorterStemmer
 
 
@@ -50,6 +50,7 @@ def shree():
 
 def shivang():
     return "HI GUJJU"
+
 
 def count(x):
     array = list(x)
@@ -168,41 +169,57 @@ def chloropleth(data, title="", hue=""):
     iplot(f)
 
 
-def error_score(yt,yp,typ='classification',beta=0.5,average='macro'):
+def error_score(yt, yp, typ="classification", beta=0.5, average="macro"):
     typ = typ.lower()
     r2_score1 = []
     mean_squared_error1 = []
-    mean_squared_log_error1 =[]
-    median_absolute_error1=[]
-    mean_absolute_error1=[]
-    accuracy_score1=[]
-    f1_score1=[]
-    fbeta_score1=[]
-    if typ=='regression':
-        a=r2_score(yt,yp)
-        b=mean_squared_error(yt,yp)
-        c=mean_squared_log_error(yt,yp)
-        d=median_absolute_error(yt,yp)
-        e=mean_absolute_error(yt,yp)
+    mean_squared_log_error1 = []
+    median_absolute_error1 = []
+    mean_absolute_error1 = []
+    accuracy_score1 = []
+    f1_score1 = []
+    fbeta_score1 = []
+    if typ == "regression":
+        a = r2_score(yt, yp)
+        b = mean_squared_error(yt, yp)
+        c = mean_squared_log_error(yt, yp)
+        d = median_absolute_error(yt, yp)
+        e = mean_absolute_error(yt, yp)
         r2_score1.append(a)
         mean_squared_error1.append(b)
         mean_squared_log_error1.append(c)
         median_absolute_error1.append(d)
         mean_absolute_error1.append(e)
-        df = pd.DataFrame([r2_score1,mean_squared_error1,mean_squared_log_error1,median_absolute_error1,mean_absolute_error1], index=['R2-SCORE','MeanSquaredError','MeanSquaredLogError','MedianAbsoluteError','MeanAbsoluteError'] ,columns =['Score'])
+        df = pd.DataFrame(
+            [
+                r2_score1,
+                mean_squared_error1,
+                mean_squared_log_error1,
+                median_absolute_error1,
+                mean_absolute_error1,
+            ],
+            index=[
+                "R2-SCORE",
+                "MeanSquaredError",
+                "MeanSquaredLogError",
+                "MedianAbsoluteError",
+                "MeanAbsoluteError",
+            ],
+            columns=["Score"],
+        )
         return df
-    elif typ=='classification':
-        a=f1_score(yt,yp)
-        b=accuracy_score(yt,yp)
-        c=fbeta_score(yt,yp,beta=beta,average=average)
+    elif typ == "classification":
+        a = f1_score(yt, yp)
+        b = accuracy_score(yt, yp)
+        c = fbeta_score(yt, yp, beta=beta, average=average)
         f1_score1.append(a)
         accuracy_score1.append(b)
         fbeta_score1.append(c)
-        df = pd.DataFrame([
-          accuracy_score1,
-          f1_score1,
-          fbeta_score1
-        ], index=['AUC','F1-SCORE','FBETA-SCORE'] ,columns =['Score'])
+        df = pd.DataFrame(
+            [accuracy_score1, f1_score1, fbeta_score1],
+            index=["AUC", "F1-SCORE", "FBETA-SCORE"],
+            columns=["Score"],
+        )
         return df
     else:
         return "Enter a valid type"
@@ -298,29 +315,35 @@ def suggest_fillers(data, th=40):
         )
     )
 
-#function for parsing datetime
+
+# function for parsing datetime
 def formatted_date(df):
     for col in df.columns:
         if col == "date" or col == "Date":
             df[col] = pd.to_datetime(df[col]).dt.strftime("%Y-%m-%d")
             print(df[col])
 
+
 # Function for cleaning of texts
 def process_text(x):
-    processed_tweet = re.sub(r'\W', ' ', str(x))
-    processed_tweet = re.sub(r'\s+[a-zA-Z]\s+', ' ', processed_tweet)
-    processed_tweet = re.sub(r'\^[a-zA-Z]\s+', ' ', processed_tweet) 
-    processed_tweet= re.sub(r'\s+', ' ', processed_tweet, flags=re.I)
-    processed_tweet = re.sub(r'^b\s+', '', processed_tweet)
+    processed_tweet = re.sub(r"\W", " ", str(x))
+    processed_tweet = re.sub(r"\s+[a-zA-Z]\s+", " ", processed_tweet)
+    processed_tweet = re.sub(r"\^[a-zA-Z]\s+", " ", processed_tweet)
+    processed_tweet = re.sub(r"\s+", " ", processed_tweet, flags=re.I)
+    processed_tweet = re.sub(r"^b\s+", "", processed_tweet)
     processed_tweet = processed_tweet.lower()
     return processed_tweet
 
-def tfidf_vectorizer(x,max_featues=1000,min_df=5,max_df=0.7):
-    tfidfconverter = TfidfVectorizer(max_features=max_featues, min_df=min_df, max_df=max_df, stop_words=stopwords.words('english'))  
+
+def tfidf_vectorizer(x, max_featues=1000, min_df=5, max_df=0.7):
+    tfidfconverter = TfidfVectorizer(
+        max_features=max_featues,
+        min_df=min_df,
+        max_df=max_df,
+        stop_words=stopwords.words("english"),
+    )
     df = tfidfconverter.fit_transform(x).toarray()
     return df
-
-
 
 
 def get_cosine_dict(vec1, vec2):
@@ -344,26 +367,30 @@ def text_to_dict(text):
 
 
 def similarity_matrix(sentences):
-  "gives a matrix for sentence similarity"
-  similarity_matrix=np.zeros((len(sentences),len(sentences)))
-  for index1 in tqdm(range(len(sentences))):
-    for index2 in range(len(sentences)):
-      if index1==index2:
-        continue
-      similarity_matrix[index1][index2]=get_cosine_dict(sentences[index1],sentences[index2])
-  return similarity_matrix
+    "gives a matrix for sentence similarity"
+    similarity_matrix = np.zeros((len(sentences), len(sentences)))
+    for index1 in tqdm(range(len(sentences))):
+        for index2 in range(len(sentences)):
+            if index1 == index2:
+                continue
+            similarity_matrix[index1][index2] = get_cosine_dict(
+                sentences[index1], sentences[index2]
+            )
+    return similarity_matrix
 
-def cosine_distance_vector(v1,v2):
+
+def cosine_distance_vector(v1, v2):
     sumxx, sumxy, sumyy = 0, 0, 0
-    v1=list(v1)
-    v2=list(v2)
+    v1 = list(v1)
+    v2 = list(v2)
     for i in range(len(v1)):
-        x = v1[i] 
+        x = v1[i]
         y = v2[i]
-        sumxx += x*x
-        sumyy += y*y
-        sumxy += x*y
-    return sumxy/math.sqrt(sumxx*sumyy)
+        sumxx += x * x
+        sumyy += y * y
+        sumxy += x * y
+    return sumxy / math.sqrt(sumxx * sumyy)
+
 
 def suggest_similar(df, unique_id, col):
 
@@ -422,55 +449,124 @@ def suggest_similar(df, unique_id, col):
 
     plt.show()
 
-def catvscatplot(arr1,arr2,stacked=True):
-    b=pd.crosstab(arr1,arr2)
-    b.tail(10).plot.bar(stacked=stacked,figsize=(15,9))
 
-def catvsnumericalplot(data,catcol,numcol,stacked=True,swarmcolor='c',violincolor='r',kdecolor='y',scattercolor='b',linecolor='g'):
-    #Plots initialization
-    fig, ax =plt.subplots(2,2)
+def catvscatplot(arr1, arr2, stacked=True):
+    b = pd.crosstab(arr1, arr2)
+    b.tail(10).plot.bar(stacked=stacked, figsize=(15, 9))
+
+
+def catvsnumericalplot(
+    data,
+    catcol,
+    numcol,
+    stacked=True,
+    swarmcolor="c",
+    violincolor="r",
+    kdecolor="y",
+    scattercolor="b",
+    linecolor="g",
+):
+    # Plots initialization
+    fig, ax = plt.subplots(2, 2)
     fig.set_size_inches(12.7, 10.27)
-    
-    #Scatterplot
-    plt.subplot(2,2,1)
-    sns.scatterplot(x=catcol,y=numcol,data=data,color=scattercolor)
-    
-    
-    #Swarm+Violin plot
-    plt.subplot(2,2,2)
-    sns.swarmplot(x=catcol,y=numcol,data=data,color=swarmcolor)
-    sns.violinplot(x=catcol,y=numcol,data=data,color=violincolor)
-    
-    
-    #Bar plot
-    plt.subplot(2,2,3)
-    
-    sns.barplot(x=catcol,y=numcol,data=data)
-    
-    #Box plot
-    plt.subplot(2,2,4)
-    sns.boxplot(x=catcol,y=numcol,data=data)
-    
-    
-#     t=data.pivot_table(index=catcol,values=numcol,aggfunc=np.median)
-#     t.plot(kind="bar",color=['c','y','r'])
-    
+
+    # Scatterplot
+    plt.subplot(2, 2, 1)
+    sns.scatterplot(x=catcol, y=numcol, data=data, color=scattercolor)
+
+    # Swarm+Violin plot
+    plt.subplot(2, 2, 2)
+    sns.swarmplot(x=catcol, y=numcol, data=data, color=swarmcolor)
+    sns.violinplot(x=catcol, y=numcol, data=data, color=violincolor)
+
+    # Bar plot
+    plt.subplot(2, 2, 3)
+
+    sns.barplot(x=catcol, y=numcol, data=data)
+
+    # Box plot
+    plt.subplot(2, 2, 4)
+    sns.boxplot(x=catcol, y=numcol, data=data)
+
+    #     t=data.pivot_table(index=catcol,values=numcol,aggfunc=np.median)
+    #     t.plot(kind="bar",color=['c','y','r'])
+
     fig.show()
 
 
-def numvsnumplot(arr1,arr2,stacked=True,scattercolor='c',linecolor='r'):
-    #Plots initialization
-    fig, ax =plt.subplots(1,2)
+def numvsnumplot(arr1, arr2, stacked=True, scattercolor="c", linecolor="r"):
+    # Plots initialization
+    fig, ax = plt.subplots(1, 2)
     fig.set_size_inches(12.7, 5.27)
-    
-    #Scatterplot
-    plt.subplot(1,2,1)
-    sns.scatterplot(arr1,arr2,color=scattercolor)
-    
-    
-    #Lineplot
-    plt.subplot(1,2,2)
-    sns.lineplot(arr1,arr2,color=linecolor)
-    
-    
+
+    # Scatterplot
+    plt.subplot(1, 2, 1)
+    sns.scatterplot(arr1, arr2, color=scattercolor)
+
+    # Lineplot
+    plt.subplot(1, 2, 2)
+    sns.lineplot(arr1, arr2, color=linecolor)
+
     fig.show()
+
+
+def suggest_quants(data, th=60):
+    dtb = []
+    print(
+        "Following columns might be considered to be converted as categorical as \nthe column is numerical and the uniqueness percent is greater than the threshold-",
+        th,
+        "%\nLength of the dataset is:",
+        len(data),
+    )
+    ln = len(data)
+    numer = data.select_dtypes(include=np.number).columns.tolist()
+
+    for i in numer:
+        unique_vals = data[i].nunique()
+        total_percent = (unique_vals / ln) * 100
+        if total_percent >= 60:
+            dtb.append([i])
+
+    print(tb(dtb, headers=["Column name"], tablefmt="fancy_grid"))
+
+
+def create_quants(data, cols):
+    dtb = []
+    print("Creating Quantile columns...")
+
+    for col in cols:
+        low = np.percentile(data[col], 25)
+        mid = np.percentile(data[col], 50)
+        high = np.percentile(data[col], 75)
+        data[col + "_quant"] = data[col].apply(
+            lambda i: 0 if low > i else (1 if mid > i else (2 if high > i else 3))
+        )
+        print(col + "_quant" + " has been created using column " + col)
+
+    print("completed!")
+
+
+def date_me(data, cols):
+    from datetime import date
+
+    today = date.today()
+    dtb = []
+    print("Starting feature extraction from date column...")
+
+    for col in cols:
+        data["age"] = today.year - data[col].dt.year
+        data["months"] = data["age"] * 12 + data[col].dt.month
+        data["days"] = data["months"] * 30 + data[col].dt.day
+        data["season"] = data["months"].apply(
+            lambda i: "Winter"
+            if i in [1, 2, 12]
+            else (
+                "Spring"
+                if i in [4, 5, 6]
+                else ("Summer" if i in [7, 8, 9] else "Spring")
+            )
+        )
+        data["weekday"] = data[col].dt.day_name()
+        print("Features Extracted from column", col + ".....")
+
+    print("completed!")
