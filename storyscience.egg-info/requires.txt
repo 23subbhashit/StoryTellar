@@ -9,3 +9,4 @@ regex>=2.2.1
 nltk>=3.4.5
 tqdm>=4.45.0
 scipy>=1.4.1
+wordcloud>=1.8.0

@@ -17,7 +17,7 @@ from scipy.cluster.hierarchy import linkage, dendrogram
 from nltk.stem.snowball import SnowballStemmer
 from datetime import date
 from sklearn.cluster import KMeans
-
+from wordcloud import WordCloud
 warnings.filterwarnings("ignore")
 
 import plotly.graph_objects as go
@@ -570,3 +570,19 @@ def date_me(data, cols):
         print("Features Extracted from column", col + ".....")
 
     print("completed!")
+
+def time_series_plot(data,datefrom,dateto,text,col,figsize=(16,9)):
+    data[col][datefrom:].plot(figsize=figsize,legend=True,color='r')
+    data[col][:dateto].plot(figsize=figsize,legend=True,color='g')
+    title1='Data (Before {})'.format(datefrom)
+    title2='Data {} and beyond)'.format(dateto)
+    plt.legend([title1,title2])
+    plt.title(text)
+    plt.show()
+
+
+def wordarraycloud(arr_words,width=800,height=400):
+    states=np.array(arr_words)
+    cloud=WordCloud(width=width,height=height)
+    cloud.generate(" ".join(states))
+    return cloud.to_image()
