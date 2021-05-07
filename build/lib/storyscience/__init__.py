@@ -18,6 +18,7 @@ from nltk.stem.snowball import SnowballStemmer
 from datetime import date
 from sklearn.cluster import KMeans
 from wordcloud import WordCloud
+
 warnings.filterwarnings("ignore")
 
 import plotly.graph_objects as go
@@ -251,18 +252,15 @@ def suggest_cats(data, th=40):
                 ]
             )
 
-    print(
-        tb(
-            dtb,
-            headers=[
-                "Column name",
-                "Number of unique values",
-                "Total uniqueness percent",
-                "Effective uniqueness percent",
-                "Average uniqueness percentage",
-            ],
-            tablefmt="fancy_grid",
-        )
+    return pd.DataFrame(
+        dtb,
+        columns=[
+            "Column name",
+            "Number of unique values",
+            "Total uniqueness percent",
+            "Effective uniqueness percent",
+            "Average uniqueness percentage",
+        ],
     )
 
 
@@ -282,12 +280,8 @@ def suggest_drops(data, th=60):
         if nan_percent >= th:
             dtb.append([i, round(nans, 5), round(nan_percent, 5)])
 
-    print(
-        tb(
-            dtb,
-            headers=["Column name", "Number of nulls", "Percent of null values"],
-            tablefmt="fancy_grid",
-        )
+    return pd.DataFrame(
+        dtb, columns=["Column name", "Number of nulls", "Percent of null values"]
     )
 
 
@@ -307,12 +301,8 @@ def suggest_fillers(data, th=40):
         if nan_percent <= th and nan_percent != 0:
             dtb.append([i, round(nans, 5), round(nan_percent, 5)])
 
-    print(
-        tb(
-            dtb,
-            headers=["Column name", "Number of nulls", "Percent of null values"],
-            tablefmt="fancy_grid",
-        )
+    return pd.DataFrame(
+        dtb, columns=["Column name", "Number of nulls", "Percent of null values"]
     )
 
 
@@ -571,18 +561,19 @@ def date_me(data, cols):
 
     print("completed!")
 
-def time_series_plot(data,datefrom,dateto,text,col,figsize=(16,9)):
-    data[col][datefrom:].plot(figsize=figsize,legend=True,color='r')
-    data[col][:dateto].plot(figsize=figsize,legend=True,color='g')
-    title1='Data (Before {})'.format(datefrom)
-    title2='Data {} and beyond)'.format(dateto)
-    plt.legend([title1,title2])
+
+def time_series_plot(data, datefrom, dateto, text, col, figsize=(16, 9)):
+    data[col][datefrom:].plot(figsize=figsize, legend=True, color="r")
+    data[col][:dateto].plot(figsize=figsize, legend=True, color="g")
+    title1 = "Data (Before {})".format(datefrom)
+    title2 = "Data {} and beyond)".format(dateto)
+    plt.legend([title1, title2])
     plt.title(text)
     plt.show()
 
 
-def wordarraycloud(arr_words,width=800,height=400):
-    states=np.array(arr_words)
-    cloud=WordCloud(width=width,height=height)
+def wordarraycloud(arr_words, width=800, height=400):
+    states = np.array(arr_words)
+    cloud = WordCloud(width=width, height=height)
     cloud.generate(" ".join(states))
     return cloud.to_image()
