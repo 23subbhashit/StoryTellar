@@ -1,9 +1,9 @@
-# WordCloud
+# Time-Series Plotting
 
 ```python3
 storyscience.time_series_plot(data, datefrom, dateto, text, col, figsize=(16, 9))
 ```
-Utility for plotting a wordcloud from a given array of words.
+Utility for plotting  time wise data.
 
 **Arguments**
 
@@ -18,12 +18,14 @@ Utility for plotting a wordcloud from a given array of words.
 **Example**
 
 ```
-data= pd.read_csv('../input/pandas-bokeh/long_data_.csv')
-storyscience.wordarraycloud(data['States'])
+data=pd.read_csv("../input/stock-price-predictions/Apple.csv",
+                 index_col="Price Date",
+                 parse_dates=["Price Date"])
+storyscience.time_series_plot(data,'2016','2016','Apple stock price',"Modal Price (Rs./Quintal)")
 ```
 **Dataset**
 
-<a href="https://www.kaggle.com/smart1004/pandas-bokeh" target="_blank">Pandas Bokeh</a>
+<a href="https://www.kaggle.com/subbhashit/stock-price-predictions" target="_blank">Stock Price Predictions</a>
 
 
 
