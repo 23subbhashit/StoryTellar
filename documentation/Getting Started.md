@@ -16,6 +16,9 @@ StoryScience is an analytical tool built for nlp and bussiness analytics support
 - <a href="https://github.com/23subbhashit/StoryTellar/blob/master/documentation/chloropleth.md" >Chloropleth</a>
 - <a href="https://github.com/23subbhashit/StoryTellar/blob/master/documentation/numvsnumplot.md" >Numerical vs Numerical Plotting</a>
 - <a href="https://github.com/23subbhashit/StoryTellar/blob/master/documentation/singleplot.md" >Single Plot</a>
+- <a href="https://github.com/23subbhashit/StoryTellar/blob/master/documentation/WordCloud.md" >WordCloud</a>
+- <a href="https://github.com/23subbhashit/StoryTellar/blob/master/documentation/TimeSeriesPlot.md" >Time Series Plotting</a>
+
 
 ## Support for NLP tasks:
 
